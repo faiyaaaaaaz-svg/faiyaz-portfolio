@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upgraded Tick Picker — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Instrument Sans',system-ui,sans-serif;color:#E8ECF6;background:radial-gradient(circle at top left,#0b1e3f 0,#07111f 40%,#030712 100%);min-height:100vh}
+  a{color:inherit}
+  .wrap{max-width:1240px;margin:0 auto;padding:22px clamp(16px,4vw,40px) 70px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;color:#9AA4BD;padding:8px 14px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.03)}
+  .back:hover{color:#fff;border-color:rgba(59,130,246,.4)}
+  .demo-badge{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#FDE047;padding:7px 13px;border:1px solid rgba(253,224,71,.35);background:rgba(253,224,71,.08);border-radius:999px}
+  .demo-badge b{width:7px;height:7px;border-radius:50%;background:#FDE047;box-shadow:0 0 8px #FDE047}
+  .card{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:24px;backdrop-filter:blur(8px)}
+  .brand{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8FB6FF;padding:5px 11px;border:1px solid rgba(59,130,246,.3);border-radius:999px}
+  h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(24px,4vw,40px);letter-spacing:-.01em;margin:16px 0 10px;line-height:1.1}
+  .lede{color:#AEB7CE;font-size:15px;line-height:1.6;max-width:74ch}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8FB6FF}
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:20px 0}
+  .chip{cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;padding:9px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:#C9D2E6}
+  .chip:hover{border-color:rgba(59,130,246,.45);color:#fff}
+  .chip.on{background:linear-gradient(120deg,#3B82F6,#22D3EE);color:#04101f;border-color:transparent;font-weight:700}
+  .filebtn{cursor:pointer;font-size:13px;color:#D7DEEF;padding:9px 14px;border:1px dashed rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.02)}
+  textarea{width:100%;min-height:150px;background:rgba(3,7,18,.6);border:1px solid rgba(255,255,255,.14);border-radius:14px;color:#E8ECF6;padding:13px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;resize:vertical;outline:none}
+  textarea:focus{border-color:rgba(59,130,246,.5)}
+  .run{cursor:pointer;font-family:'Space Grotesk';font-weight:600;font-size:14px;color:#04101f;padding:13px 24px;border:none;border-radius:12px;background:linear-gradient(120deg,#3B82F6,#22D3EE);box-shadow:0 10px 26px rgba(59,130,246,.25);margin-top:14px}
+  .run:hover{filter:brightness(1.07)}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+  @media(max-width:820px){.cards{grid-template-columns:1fr 1fr}}
+  .rcard{border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:transform .2s,border-color .2s}
+  .rcard:hover{transform:translateY(-3px)}
+  .rcard .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-family:'JetBrains Mono',monospace}
+  .rcard .val{font-family:'Space Grotesk';font-weight:700;font-size:26px;margin-top:8px;line-height:1}
+  .rcard .meta{font-size:12px;color:#8A94AD;margin-top:8px}
+  .blue{background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.35)} .blue .lbl{color:#8FB6FF}
+  .orange{background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.35)} .orange .lbl{color:#FDBA74}
+  .green{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.35)} .green .lbl{color:#7CE7BE}
+  .yellow{background:rgba(253,224,71,.12);border-color:rgba(253,224,71,.35)} .yellow .lbl{color:#FDE047}
+  .tblwrap{overflow:auto;max-height:440px;border:1px solid rgba(255,255,255,.1);border-radius:16px;margin-top:22px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{position:sticky;top:0;background:#0d1a30;text-align:left;padding:10px 14px;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#9AA4BD;white-space:nowrap}
+  td{padding:9px 14px;border-top:1px solid rgba(255,255,255,.06);color:#C9D2E6;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:12px}
+  tr.hl-blue td{background:rgba(59,130,246,.22)} tr.hl-orange td{background:rgba(249,115,22,.22)}
+  tr.hl-green td{background:rgba(16,185,129,.2)} tr.hl-yellow td{background:rgba(253,224,71,.16)}
+  .instrument-head{font-family:'Space Grotesk';font-weight:600;font-size:16px;margin:24px 0 4px;display:flex;align-items:center;gap:10px}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A94AD;background:rgba(255,255,255,.05);padding:3px 9px;border-radius:7px}
+  .foot{margin-top:40px;text-align:center;color:#6E7891;font-size:13px}
+  .note{font-size:12.5px;color:#8A94AD;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="../Faiyaz Portfolio.dc.html">← Back to portfolio</a>
+    <span class="demo-badge"><b></b>Demo · sample data</span>
+  </div>
+
+  <header class="card">
+    <span class="brand">Market-data analysis workspace</span>
+    <h1>Upgraded Tick Picker</h1>
+    <p class="lede">Paste or upload tick exports (CSV / TSV / TXT). The tool auto-detects the date, time, Bid and Ask columns, finds the minimum Bid, maximum Ask, minimum Ask and maximum Bid, and highlights the exact row behind each result. Load a sample below to see it work — click any result card to jump to its row.</p>
+    <div class="controls">
+      <span class="eyebrow" style="align-self:center">Load sample:</span>
+      <button class="chip on" data-sample="single">Single instrument</button>
+      <button class="chip" data-sample="multi">Multi-instrument compare</button>
+      <label class="filebtn">Upload file…<input type="file" id="file" accept=".csv,.tsv,.txt,.log" style="display:none"></label>
+    </div>
+    <textarea id="input" spellcheck="false"></textarea>
+    <button class="run" id="runBtn">Analyze ticks</button>
+    <p class="note" id="note"></p>
+  </header>
+
+  <div id="output"></div>
+
+  <p class="foot">Demo build · in-browser parser · Developed by Faiyaz Muhtasim Ahmed</p>
+</div>
+
+<script>
+const SAMPLES = {
+single:`Date,Time,Bid,Ask
+2026-06-03,22:00:01,1.08440,1.08452
+2026-06-03,22:00:02,1.08438,1.08451
+2026-06-03,22:00:03,1.08445,1.08458
+2026-06-03,22:00:04,1.08431,1.08444
+2026-06-03,22:00:05,1.08452,1.08466
+2026-06-03,22:00:06,1.08447,1.08460
+2026-06-03,22:00:07,1.08429,1.08441
+2026-06-03,22:00:08,1.08455,1.08470
+2026-06-03,22:00:09,1.08442,1.08454
+2026-06-03,22:00:10,1.08436,1.08448`,
+multi:`Symbol,Date,Time,Bid,Ask
+XAUUSD,2026-06-03,22:00:01,4449.10,4449.42
+XAUUSD,2026-06-03,22:00:02,4448.85,4449.18
+XAUUSD,2026-06-03,22:00:03,4450.02,4450.35
+XAUUSD,2026-06-03,22:00:04,4447.60,4447.95
+XAUUSD,2026-06-03,22:00:05,4451.15,4451.55
+EURUSD,2026-06-03,22:00:01,1.08440,1.08452
+EURUSD,2026-06-03,22:00:02,1.08431,1.08444
+EURUSD,2026-06-03,22:00:03,1.08455,1.08470
+EURUSD,2026-06-03,22:00:04,1.08429,1.08441
+EURUSD,2026-06-03,22:00:05,1.08447,1.08460`
+};
+
+const RESULTS=[
+  {key:'minBid',label:'Minimum Bid',field:'bid',cmp:'min',cls:'blue',hl:'hl-blue'},
+  {key:'maxAsk',label:'Maximum Ask',field:'ask',cmp:'max',cls:'orange',hl:'hl-orange'},
+  {key:'minAsk',label:'Minimum Ask',field:'ask',cmp:'min',cls:'green',hl:'hl-green'},
+  {key:'maxBid',label:'Maximum Bid',field:'bid',cmp:'max',cls:'yellow',hl:'hl-yellow'}
+];
+
+function detectDelim(line){ if(line.indexOf('\t')>-1)return '\t'; if(line.indexOf(';')>-1)return ';'; return ','; }
+function norm(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');}
+function parseNum(v){const m=String(v).replace(/[^0-9.\-]/g,'').match(/-?\d+(?:\.\d+)?/);return m?Number(m[0]):null;}
+
+function parse(text){
+  const lines=text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  if(!lines.length) return {err:'No data found.'};
+  const delim=detectDelim(lines[0]);
+  const header=lines[0].split(delim).map(h=>h.trim());
+  const H=header.map(norm);
+  const idx=(names)=>{for(const n of names){const i=H.indexOf(n);if(i>-1)return i;}return -1;};
+  const iSym=idx(['symbol','instrument','pair','ticker']);
+  const iDate=idx(['date','day']);
+  const iTime=idx(['time','timestamp','datetime']);
+  const iBid=idx(['bid','bidprice','minbid','bidclose']);
+  const iAsk=idx(['ask','askprice','offer','askclose']);
+  if(iBid<0||iAsk<0) return {err:'Could not auto-detect Bid and Ask columns. Make sure your header row includes "Bid" and "Ask".'};
+  const rows=[];
+  for(let i=1;i<lines.length;i++){
+    const c=lines[i].split(delim);
+    const bid=parseNum(c[iBid]), ask=parseNum(c[iAsk]);
+    if(bid===null||ask===null) continue;
+    rows.push({sym:iSym>-1?String(c[iSym]).trim():'(all)',date:iDate>-1?c[iDate]:'',time:iTime>-1?c[iTime]:'',bid,ask,raw:c});
+  }
+  return {rows,cols:{iSym,iDate,iTime,iBid,iAsk},detected:{date:iDate>-1?header[iDate]:null,time:iTime>-1?header[iTime]:null,bid:header[iBid],ask:header[iAsk],sym:iSym>-1?header[iSym]:null}};
+}
+
+function fmt(n){return n.toFixed(String(n).includes('.')?Math.min(5,(String(n).split('.')[1]||'').length):2);}
+
+function analyze(){
+  const out=document.getElementById('output'); out.innerHTML='';
+  const res=parse(document.getElementById('input').value);
+  if(res.err){document.getElementById('note').textContent=res.err;return;}
+  const d=res.detected;
+  document.getElementById('note').textContent=`Detected columns → Bid: "${d.bid}", Ask: "${d.ask}"${d.time?`, Time: "${d.time}"`:''}${d.sym?`, Symbol: "${d.sym}"`:''}. Parsed ${res.rows.length} ticks.`;
+  const groups={};
+  res.rows.forEach(r=>{(groups[r.sym]=groups[r.sym]||[]).push(r);});
+  Object.keys(groups).forEach(sym=>{
+    const rows=groups[sym];
+    const picks={};
+    RESULTS.forEach(R=>{
+      let best=rows[0],bi=0;
+      rows.forEach((r,i)=>{ if((R.cmp==='min'&&r[R.field]<best[R.field])||(R.cmp==='max'&&r[R.field]>best[R.field])){best=r;bi=i;} });
+      picks[R.key]={row:best,index:bi};
+    });
+    const wrap=document.createElement('div');
+    if(sym!=='(all)'){wrap.innerHTML=`<div class="instrument-head">${sym} <span class="tag">${rows.length} ticks</span></div>`;}
+    const cardGrid=document.createElement('div'); cardGrid.className='cards';
+    const tblId='tbl-'+sym.replace(/\W/g,'');
+    RESULTS.forEach(R=>{
+      const p=picks[R.key];
+      const c=document.createElement('div'); c.className='rcard '+R.cls;
+      c.innerHTML=`<div class="lbl">${R.label}</div><div class="val">${fmt(p.row[R.field])}</div><div class="meta">${p.row.time||p.row.date||('row '+(p.index+1))}</div>`;
+      c.addEventListener('click',()=>{
+        const tbl=document.getElementById(tblId);
+        tbl.querySelectorAll('tr').forEach(tr=>tr.className='');
+        const tr=tbl.querySelectorAll('tbody tr')[p.index];
+        if(tr){tr.className=R.hl;tr.scrollIntoView({block:'center',behavior:'smooth'});}
+      });
+      cardGrid.appendChild(c);
+    });
+    wrap.appendChild(cardGrid);
+    const tw=document.createElement('div'); tw.className='tblwrap';
+    let html=`<table id="${tblId}"><thead><tr><th>#</th>${d.date?'<th>Date</th>':''}${d.time?'<th>Time</th>':''}<th>Bid</th><th>Ask</th></tr></thead><tbody>`;
+    rows.forEach((r,i)=>{html+=`<tr><td>${i+1}</td>${d.date?`<td>${r.date}</td>`:''}${d.time?`<td>${r.time}</td>`:''}<td>${fmt(r.bid)}</td><td>${fmt(r.ask)}</td></tr>`;});
+    html+='</tbody></table>'; tw.innerHTML=html; wrap.appendChild(tw);
+    out.appendChild(wrap);
+  });
+}
+
+function loadSample(k){document.getElementById('input').value=SAMPLES[k];document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.sample===k));analyze();}
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>loadSample(c.dataset.sample)));
+document.getElementById('runBtn').addEventListener('click',analyze);
+document.getElementById('file').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{document.getElementById('input').value=r.result;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));analyze();};r.readAsText(f);});
+loadSample('single');
+</script>
+</body>
+</html>
