@@ -1,5 +1,5 @@
 /* ============================================================
-   DESIGN TOKENS — LIGHT MODE (default)
+   DESIGN TOKENS â€” LIGHT MODE (default)
    ============================================================ */
 :root {
   --page:        #F5F4F0;
@@ -105,7 +105,7 @@ body {
 }
 
 /* ============================================================
-   TOPBAR — theme toggle lives here
+   TOPBAR â€” theme toggle lives here
    ============================================================ */
 .topbar {
   display: flex;
@@ -132,6 +132,37 @@ body {
   height: 8px;
   border-radius: 50%;
   background: var(--accent);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.portfolio-back {
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.portfolio-back:hover,
+.portfolio-back:focus-visible {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .topbar-actions {
+    align-items: flex-end;
+    flex-direction: column-reverse;
+  }
 }
 
 /* Dark mode toggle button */
@@ -347,7 +378,7 @@ body {
   transition: background var(--transition);
 }
 
-/* Subtle shadow when scrolled — added via JS class */
+/* Subtle shadow when scrolled â€” added via JS class */
 .tool-nav-wrap.is-stuck {
   box-shadow: var(--shadow-md);
 }
@@ -422,7 +453,7 @@ body {
 }
 
 .tab-desc {
-  display: none; /* clean, minimal — show only label */
+  display: none; /* clean, minimal â€” show only label */
 }
 
 /* ============================================================
@@ -853,7 +884,7 @@ select {
 }
 
 /* ============================================================
-   RESULT PANEL — the signature element
+   RESULT PANEL â€” the signature element
    The number is enormous, monospaced, typographic weight only.
    No gradients, no glows. Just ink on paper.
    ============================================================ */
@@ -993,7 +1024,7 @@ select {
 .helper-spaced { margin-bottom: 24px; }
 
 .helper-box::before {
-  content: "›";
+  content: "â€º";
   font-size: 16px;
   font-weight: 700;
   color: var(--accent);
@@ -1086,7 +1117,7 @@ select {
 }
 
 /* ============================================================
-   RESPONSIVE — TABLET
+   RESPONSIVE â€” TABLET
    ============================================================ */
 @media (max-width: 960px) {
   .card {
@@ -1112,7 +1143,7 @@ select {
 }
 
 /* ============================================================
-   RESPONSIVE — MOBILE
+   RESPONSIVE â€” MOBILE
    ============================================================ */
 @media (max-width: 540px) {
   .app-container {
