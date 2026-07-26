@@ -71,7 +71,7 @@
 <body>
 <div class="wrap">
   <div class="topbar">
-    <a class="back" href="../Faiyaz Portfolio.dc.html">← Back to portfolio</a>
+    <a class="back" href="../index.html#projects">← Back to portfolio</a>
     <span class="demo-badge"><b></b>Demo · sample data</span>
   </div>
 
@@ -161,55 +161,55 @@ const CASES = {
     disputed:"51941458, 51941468, 51941494",
     accepted:"51941343",
     journal:`Timestamp\tIP\tJournal Entry
-2026.06.03 22:09:22\t104.28.154.49\t'22309195': login (build 4620) from 104.28.154.49, cid: 9f2a71c4d88b30ea
-2026.06.03 22:12:04\t104.28.154.49\t'22309195': order #51941343, buy 0.10 EURUSD at 1.08450
-2026.06.03 22:29:30\t104.28.154.49\t'22309195': order #51941458, buy 0.20 XAUUSD at 4449.16
-2026.06.03 22:31:11\t104.28.154.49\t'22309195': order #51941468, sell 0.15 XAUUSD at 4451.02
-2026.06.03 22:34:52\t104.28.154.49\t'22309195': order #51941494, buy 0.10 GBPUSD at 1.27310`,
+2026.06.03 22:09:22\t192.0.2.10\t'DEMO-LOGIN-A': login (demo build) from 192.0.2.10, cid: DEMO-CID-A
+2026.06.03 22:12:04\t192.0.2.10\t'DEMO-LOGIN-A': order #51941343, buy 0.10 EURUSD at 1.08450
+2026.06.03 22:29:30\t192.0.2.10\t'DEMO-LOGIN-A': order #51941458, buy 0.20 XAUUSD at 4449.16
+2026.06.03 22:31:11\t192.0.2.10\t'DEMO-LOGIN-A': order #51941468, sell 0.15 XAUUSD at 4451.02
+2026.06.03 22:34:52\t192.0.2.10\t'DEMO-LOGIN-A': order #51941494, buy 0.10 GBPUSD at 1.27310`,
     status:"Invalid Claim", tone:"danger",
-    dispCid:"9f2a71c4d88b30ea", accCid:"9f2a71c4d88b30ea",
+    dispCid:"DEMO-CID-A", accCid:"DEMO-CID-A",
     rows:[
-      {role:"Comparison",id:"51941343",lt:"22:09:22",cid:"9f2a71c4d88b30ea",ip:"104.28.154.49",ot:"22:12:04",sym:"EURUSD",act:"buy",chk:"green",chkT:"Matched Comparison CID"},
-      {role:"Disputed",id:"51941458",lt:"22:09:22",cid:"9f2a71c4d88b30ea",ip:"104.28.154.49",ot:"22:29:30",sym:"XAUUSD",act:"buy",chk:"green",chkT:"Matched Comparison CID"},
-      {role:"Disputed",id:"51941468",lt:"22:09:22",cid:"9f2a71c4d88b30ea",ip:"104.28.154.49",ot:"22:31:11",sym:"XAUUSD",act:"sell",chk:"green",chkT:"Matched Comparison CID"},
-      {role:"Disputed",id:"51941494",lt:"22:09:22",cid:"9f2a71c4d88b30ea",ip:"104.28.154.49",ot:"22:34:52",sym:"GBPUSD",act:"buy",chk:"green",chkT:"Matched Comparison CID"}
+      {role:"Comparison",id:"51941343",lt:"22:09:22",cid:"DEMO-CID-A",ip:"192.0.2.10",ot:"22:12:04",sym:"EURUSD",act:"buy",chk:"green",chkT:"Matched Comparison CID"},
+      {role:"Disputed",id:"51941458",lt:"22:09:22",cid:"DEMO-CID-A",ip:"192.0.2.10",ot:"22:29:30",sym:"XAUUSD",act:"buy",chk:"green",chkT:"Matched Comparison CID"},
+      {role:"Disputed",id:"51941468",lt:"22:09:22",cid:"DEMO-CID-A",ip:"192.0.2.10",ot:"22:31:11",sym:"XAUUSD",act:"sell",chk:"green",chkT:"Matched Comparison CID"},
+      {role:"Disputed",id:"51941494",lt:"22:09:22",cid:"DEMO-CID-A",ip:"192.0.2.10",ot:"22:34:52",sym:"GBPUSD",act:"buy",chk:"green",chkT:"Matched Comparison CID"}
     ],
-    macro:`Hi there,\n\nThank you for reaching out. We carefully reviewed the trades you reported as unauthorized (#51941458, #51941468, #51941494).\n\nOur investigation shows that all of these orders were executed from the exact same device identifier (CID: 9f2a71c4d88b30ea) as your own confirmed activity, including order #51941343 which you have not disputed. The disputed and confirmed trades share identical device evidence.\n\nBased on this, the claim of unauthorized trading cannot be validated, as the activity originates from your own authenticated session. If you believe your credentials were compromised, please secure your account immediately and let us know.\n\nBest regards,\nRisk & Investigation Team`
+    macro:`Hi there,\n\nThank you for reaching out. We carefully reviewed the trades you reported as unauthorized (#51941458, #51941468, #51941494).\n\nOur investigation shows that all of these orders were executed from the exact same device identifier (CID: DEMO-CID-A) as your own confirmed activity, including order #51941343 which you have not disputed. The disputed and confirmed trades share identical device evidence.\n\nBased on this, the claim of unauthorized trading cannot be validated, as the activity originates from your own authenticated session. If you believe your credentials were compromised, please secure your account immediately and let us know.\n\nBest regards,\nRisk & Investigation Team`
   },
   valid: {
     platform:"MT5", claimType:"Did Not Open",
     disputed:"60228841, 60228902",
     accepted:"60227310",
     journal:`Timestamp\tIP\tJournal Entry
-2026.05.18 14:02:10\t45.113.90.7\t'30551208': login (build 4620) from 45.113.90.7, cid: a1b2c3d4e5f60718
-2026.05.18 14:05:44\t45.113.90.7\t'30551208': order #60227310, buy 0.50 US30 at 41230.5
-2026.05.18 19:47:03\t196.202.11.88\t'30551208': login (build 4620) from 196.202.11.88, cid: ff00aa9988776655
-2026.05.18 19:48:21\t196.202.11.88\t'30551208': order #60228841, sell 1.00 US30 at 41190.0
-2026.05.18 19:50:58\t196.202.11.88\t'30551208': order #60228902, sell 1.00 NAS100 at 18540.7`,
+2026.05.18 14:02:10\t198.51.100.20\t'DEMO-LOGIN-B': login (demo build) from 198.51.100.20, cid: DEMO-CID-B
+2026.05.18 14:05:44\t198.51.100.20\t'DEMO-LOGIN-B': order #60227310, buy 0.50 US30 at 41230.5
+2026.05.18 19:47:03\t203.0.113.30\t'DEMO-LOGIN-B': login (demo build) from 203.0.113.30, cid: DEMO-CID-C
+2026.05.18 19:48:21\t203.0.113.30\t'DEMO-LOGIN-B': order #60228841, sell 1.00 US30 at 41190.0
+2026.05.18 19:50:58\t203.0.113.30\t'DEMO-LOGIN-B': order #60228902, sell 1.00 NAS100 at 18540.7`,
     status:"Valid Claim", tone:"success",
-    dispCid:"ff00aa9988776655", accCid:"a1b2c3d4e5f60718",
+    dispCid:"DEMO-CID-C", accCid:"DEMO-CID-B",
     rows:[
-      {role:"Comparison",id:"60227310",lt:"14:02:10",cid:"a1b2c3d4e5f60718",ip:"45.113.90.7",ot:"14:05:44",sym:"US30",act:"buy",chk:"blue",chkT:"Reference CID"},
-      {role:"Disputed",id:"60228841",lt:"19:47:03",cid:"ff00aa9988776655",ip:"196.202.11.88",ot:"19:48:21",sym:"US30",act:"sell",chk:"amber",chkT:"Different CID"},
-      {role:"Disputed",id:"60228902",lt:"19:47:03",cid:"ff00aa9988776655",ip:"196.202.11.88",ot:"19:50:58",sym:"NAS100",act:"sell",chk:"amber",chkT:"Different CID"}
+      {role:"Comparison",id:"60227310",lt:"14:02:10",cid:"DEMO-CID-B",ip:"198.51.100.20",ot:"14:05:44",sym:"US30",act:"buy",chk:"blue",chkT:"Reference CID"},
+      {role:"Disputed",id:"60228841",lt:"19:47:03",cid:"DEMO-CID-C",ip:"203.0.113.30",ot:"19:48:21",sym:"US30",act:"sell",chk:"amber",chkT:"Different CID"},
+      {role:"Disputed",id:"60228902",lt:"19:47:03",cid:"DEMO-CID-C",ip:"203.0.113.30",ot:"19:50:58",sym:"NAS100",act:"sell",chk:"amber",chkT:"Different CID"}
     ],
-    macro:`Hi there,\n\nThank you for your patience while we investigated the trades you reported (#60228841, #60228902).\n\nOur review found that these orders were executed from a device identifier (CID: ff00aa9988776655) that is different from the device tied to your confirmed activity (CID: a1b2c3d4e5f60718 on order #60227310). The disputed session also originated from a different IP address than your usual login.\n\nBased on this evidence, your claim appears valid. We are escalating this case for corrective action and will follow up with next steps. We strongly recommend resetting your password and enabling additional security.\n\nBest regards,\nRisk & Investigation Team`
+    macro:`Hi there,\n\nThank you for your patience while we investigated the trades you reported (#60228841, #60228902).\n\nOur review found that these orders were executed from a device identifier (CID: DEMO-CID-C) that is different from the device tied to your confirmed activity (CID: DEMO-CID-B on order #60227310). The disputed session also originated from a different IP address than your usual login.\n\nBased on this evidence, your claim appears valid. We are escalating this case for corrective action and will follow up with next steps. We strongly recommend resetting your password and enabling additional security.\n\nBest regards,\nRisk & Investigation Team`
   },
   review: {
     platform:"MT4", claimType:"Did Not Close",
     disputed:"77410023",
     accepted:"77409980",
     journal:`Time\tIP\tMessage
-2026.06.21 08:15:00\t102.89.40.12\t'44120876': login (build 1420) from 102.89.40.12, cid: 55aa66bb77cc88dd
-2026.06.21 08:16:31\t102.89.40.12\t'44120876': order #77409980, buy 0.30 XAUUSD at 4402.10
-2026.06.21 11:59:47\t102.89.40.12\t'44120876': order #77410023 closed at 4418.55`,
+2026.06.21 08:15:00\t192.0.2.40\t'DEMO-LOGIN-C': login (demo build) from 192.0.2.40, cid: DEMO-CID-D
+2026.06.21 08:16:31\t192.0.2.40\t'DEMO-LOGIN-C': order #77409980, buy 0.30 XAUUSD at 4402.10
+2026.06.21 11:59:47\t192.0.2.40\t'DEMO-LOGIN-C': order #77410023 closed at 4418.55`,
     status:"Needs Review", tone:"warning",
-    dispCid:"55aa66bb77cc88dd", accCid:"55aa66bb77cc88dd",
+    dispCid:"DEMO-CID-D", accCid:"DEMO-CID-D",
     rows:[
-      {role:"Comparison",id:"77409980",lt:"08:15:00",cid:"55aa66bb77cc88dd",ip:"102.89.40.12",ot:"08:16:31",sym:"XAUUSD",act:"buy",chk:"green",chkT:"Matched Comparison CID"},
-      {role:"Disputed",id:"77410023",lt:"08:15:00",cid:"55aa66bb77cc88dd",ip:"102.89.40.12",ot:"11:59:47",sym:"XAUUSD",act:"close",chk:"amber",chkT:"Order Missing detail"}
+      {role:"Comparison",id:"77409980",lt:"08:15:00",cid:"DEMO-CID-D",ip:"192.0.2.40",ot:"08:16:31",sym:"XAUUSD",act:"buy",chk:"green",chkT:"Matched Comparison CID"},
+      {role:"Disputed",id:"77410023",lt:"08:15:00",cid:"DEMO-CID-D",ip:"192.0.2.40",ot:"11:59:47",sym:"XAUUSD",act:"close",chk:"amber",chkT:"Order Missing detail"}
     ],
-    macro:`Hi there,\n\nThank you for reporting the closure of order #77410023.\n\nWe located a matching device identifier (CID: 55aa66bb77cc88dd) for both this order and your confirmed activity. However, the closing journal row does not contain a complete, independent login entry for the close event, so we cannot fully confirm the origin of the close automatically.\n\nThis case has been flagged for manual review by a senior investigator, who will verify the remaining evidence and update you shortly. Thank you for your patience.\n\nBest regards,\nRisk & Investigation Team`
+    macro:`Hi there,\n\nThank you for reporting the closure of order #77410023.\n\nWe located a matching device identifier (CID: DEMO-CID-D) for both this order and your confirmed activity. However, the closing journal row does not contain a complete, independent login entry for the close event, so we cannot fully confirm the origin of the close automatically.\n\nThis case has been flagged for manual review by a senior investigator, who will verify the remaining evidence and update you shortly. Thank you for your patience.\n\nBest regards,\nRisk & Investigation Team`
   }
 };
 
